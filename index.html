@@ -7,17 +7,20 @@
 
 </head>
 <body ng-app="myapp">
-	<div ng-init='name="hello"'>
+	<div ng-init='name="hello"' ng-controller="mycontroller">
 		<div>{{name}}</div>
 	</div>
+	<div><!-- 双向数据绑定 -->
+		<input type="text" ng-model="text">
+		<h3>{{text}}</h3>
+
+	</div>
+
 </body>
 	<script type="text/javascript">
-		// function mycontroller($scope){
-		// 	$scope.name="hello";
-		// }
 		var module = angular.module("myapp",[]);
 		module.controller("mycontroller",function($scope){
-			$scope.name="hello";
+			$scope.name="hello123";
 		})
 	</script>
 </html>

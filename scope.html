@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html >
+<head>
+	<meta http-equiv="Content-Type" content="text/html;charset=UTF-8">
+	<title>Document</title>
+	<script type="text/javascript" src="./js/angular.js"></script>
+
+</head>
+<body ng-app="myapp">
+	<!-- 控制器嵌套，作用域受影响 -->
+	<h3 ng-controller="firstController">
+		{{name}}
+		{{age}}
+		<h4 ng-controller="threeController">
+		{{name}}
+		{{age}}
+		</h4>
+	</h3>
+	<h4 ng-controller="threeController">
+		{{name}}
+		{{age}}
+	</h4>
+
+
+
+	<h3 ng-controller="secondController">
+		{{name}}{{age}}
+	</h3>
+
+</body>
+	<script type="text/javascript">
+		var module = angular.module("myapp",[]);
+
+		module.controller("firstController",function($scope,$rootScope){
+			//$rootScope.age =29;
+			$scope.name="firstController";
+		})
+		module.controller("threeController",function($scope,$rootScope){
+			$rootScope.age =30;
+			//$scope.name="threeController";
+		})
+		module.controller("secondController",function($scope,$rootScope){
+			$scope.name="secondController";
+			$rootScope.age =29;
+		})
+	</script>
+</html>
