@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html ng-app="myapp">
+<head >
+	<meta http-equiv="Content-Type" content="text/html;charset=UTF-8">
+	<title>Document</title>
+	<script type="text/javascript" src="./js/angular.js"></script>
+
+</head>
+<body ng-controller="firstController">
+	<div>
+		{{name}}
+		{{isArray}}<br/>
+		{{c.name}}{{c.age}}<br/>
+		{{a.name}}{{a.age}}<br/>
+		{{b.name}}{{b.age}}<br/>
+	</div>
+
+
+</body>
+	<script type="text/javascript">
+		var module = angular.module("myapp",[]);
+		module.controller('firstController',['$scope',function($scope){
+			//$scope.name="张三";
+			$scope.arr =[1,2,3,4,5];
+			//$scope.isArray=angular.isArray($scope.name);
+			//$scope.isArray=angular.isArray($scope.arr);
+			$scope.name="zhangsan";
+			$scope.name=angular.uppercase($scope.name);
+			$scope.a={
+				name:'lisi'
+			};
+			$scope.b={
+				age:112
+			};
+			$scope.c=angular.extend($scope.a,$scope.b);
+
+			var json = "{name:'wangwu',age:30}";
+			//格式化json
+			//console.log(angular.toJson(json,true));
+			console.log(angular.fromJson(json));
+		}]);
+		
+	</script>
+</html>
