@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html >
+<head >
+	<meta http-equiv="Content-Type" content="text/html;charset=UTF-8">
+	<title>Document</title>
+	<script type="text/javascript" src="http://code.jquery.com/jquery-1.11.3.js"></script>
+	<script type="text/javascript" src="./js/angular.js"></script>
+
+</head>
+<body ng-controller="firstController">
+	<div id="hello">
+	{{name}}
+	</div>
+
+</body>
+	<script type="text/javascript">
+		var module = angular.module("myapp",[]);
+		module.controller('firstController',['$scope',function($scope){
+			$scope.name="ffff";
+			
+			var dom = document.getElementById("hello");
+			var obj=angular.element(dom);
+			obj.html('<h1>hkkk</h1>');
+		}]);
+		angular.bootstrap(document,['myapp']);
+		
+	</script>
+</html>
