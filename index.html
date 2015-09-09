@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html >
+<head>
+	<meta http-equiv="Content-Type" content="text/html;charset=UTF-8">
+	<title>Document</title>
+	<script type="text/javascript" src="./js/angular.js"></script>
+
+</head>
+<body ng-app="myapp">
+	<div ng-init='name="hello"'>
+		<div>{{name}}</div>
+	</div>
+</body>
+	<script type="text/javascript">
+		// function mycontroller($scope){
+		// 	$scope.name="hello";
+		// }
+		var module = angular.module("myapp",[]);
+		module.controller("mycontroller",function($scope){
+			$scope.name="hello";
+		})
+	</script>
+</html>
