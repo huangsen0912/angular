@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta http-equiv="Content-Type" content="text/html;charset=UTF-8">
+	<title>Document</title>
+	<script type="text/javascript" src="http://code.jquery.com/jquery-1.11.3.js"></script>
+	<script type="text/javascript" src="./js/angular.js"></script>
+
+</head>
+<body ng-controller="firstController">
+	<!-- 事件指令 -->
+	<div id="hello" ng-click="run();">
+	{{name}}
+	</div>
+	<div>
+		<input type="checkbox" ng-model="sel">
+		<select>
+			<option>1111</option>
+			<option ng-selected="sel">22222</option>
+		</select>
+	</div>
+	<input type="checkbox" ng-change="change();" ng-model="c">
+	{{c}}
+	<input type="text" ng-copy="ccc='按下ctrl+c复制'" ng-model="cc"  value="key"/>{{ccc}}{{cc}}
+	<input type="text" ng-paste="ccc='按下ctrl+c复制'" ng-model="cc"  value="key"/>{{ccc}}{{cc}}
+	<input type="text" ng-cut="ccc='按下ctrl+c复制'" ng-model="cc"  value="key"/>{{ccc}}{{cc}}
+</body>
+	<script type="text/javascript">
+		var module = angular.module("myapp",[]);
+		module.controller('firstController',['$scope',function($scope){
+			$scope.name="click me";
+			$scope.run=function(){
+				alert(123);
+			}
+			$scope.change=function(){
+				alert(45553);
+			}
+		}]);
+		angular.bootstrap(document,['myapp']);
+		
+	</script>
+</html>
