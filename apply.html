@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html >
+<head>
+	<meta http-equiv="Content-Type" content="text/html;charset=UTF-8">
+	<title>Document</title>
+	<script type="text/javascript" src="./js/angular.js"></script>
+
+</head>
+<body ng-app="myapp">
+	<!-- 控制器嵌套，作用域受影响 -->
+	<h3 ng-controller="firstController" ng-click="show();">
+		{{name}}
+		{{age}}
+	</h3>
+	{{sex}}
+
+</body>
+	<script type="text/javascript">
+		var module = angular.module("myapp",[]);
+
+			//注入模块，依赖注入，压缩注入      注入的变量                      上下文要替换使用的变量
+		module.controller("firstController",["$scope","$rootScope","$timeout",function($s,$rs,$to){
+			$rs.age =29;
+			$s.name="firstController";
+
+
+			//没有起到作用
+			// setTimeout(function(){
+			// 	$s.name="123456";
+			// },2000);
+		//传播
+		setTimeout(function(){
+			$s.$apply(function(){
+				$s.name="123456";
+				});
+				
+			},2000);
+		$to(function(){
+			$s.name="timeout";
+		},2000)
+		$s.show=function(){
+			alert("1234");
+		}
+		}])
+		
+		
+	</script>
+</html>
