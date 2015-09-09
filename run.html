@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html >
+<head>
+	<meta http-equiv="Content-Type" content="text/html;charset=UTF-8">
+	<title>Document</title>
+	<script type="text/javascript" src="./js/angular.js"></script>
+
+</head>
+<body ng-app="myapp">
+	<!-- 控制器嵌套，作用域受影响 -->
+	<h3 ng-controller="firstController">
+		{{name}}
+		{{age}}
+	</h3>
+	{{sex}}
+
+</body>
+	<script type="text/javascript">
+		var module = angular.module("myapp",[]);
+
+		// module.controller("firstController",function($s,$rootScope){
+		// 	//$rootScope.age =29;
+		// 	$s.name="firstController";
+		// })
+			//注入模块，依赖注入，压缩注入      注入的变量                      上下文要替换使用的变量
+		module.controller("firstController",["$scope","$rootScope",function($s,$rs){
+			$rs.age =29;
+			$s.name="firstController";
+		}])
+		//run方法只对全局的作用域有用，一般是为了初始化值或函数
+		module.run(['$rootScope',function($rootScope){
+			$rootScope.sex="男";
+		}])
+		
+	</script>
+</html>
