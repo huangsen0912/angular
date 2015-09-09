@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html ng-app="myapp">
+<head >
+	<meta http-equiv="Content-Type" content="text/html;charset=UTF-8">
+	<title>Document</title>
+	<script type="text/javascript" src="./js/angular.js"></script>
+
+</head>
+<body ng-controller="firstController">
+	<div>价格:<input type="text" ng-model="ipone.money"></div>
+	<div>个数：<input type="text" ng-model="ipone.num"></div>
+	<div><h4>费用：{{sum() | currency:'￥'}}</h4></div>
+	<div><h4>运费：{{ipone.fee | currency:'￥'}}</h4></div>
+	<div><h4>总额：{{sum()+ipone.fee | currency:'￥'}}</h4></div>
+
+
+</body>
+	<script type="text/javascript">
+		var module = angular.module("myapp",[]);
+		module.controller('firstController',['$scope',function($scope){
+			$scope.ipone={
+				money:1000,
+				num :1,
+				fee :50
+			};
+			$scope.sum=function(){
+				return ($scope.ipone.money * $scope.ipone.num);
+			}
+			//当总额大于10000时，运费为0
+			//参数$scope.sum是监听的参数
+			//新值
+			//旧知
+			$scope.$watch($scope.sum,function(newValue,oldValue){
+				//console.log(newValue);
+				//console.log(oldValue);
+
+				// if(newValue>=10000){
+				// 	$scope.ipone.fee=0;
+				// }else{
+				// 	$scope.ipone.fee=50;
+				// }
+				$scope.ipone.fee = newValue>=10000? 0:50;
+			});
+		}]);
+		
+	</script>
+</html>
