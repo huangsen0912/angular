@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html ng-app="myapp">
+<head >
+	<meta http-equiv="Content-Type" content="text/html;charset=UTF-8">
+	<title>Document</title>
+	<script type="text/javascript" src="http://code.jquery.com/jquery-1.11.3.js"></script>
+	<script type="text/javascript" src="./js/angular.js"></script>
+	<script type="text/javascript" src="filter1.js"></script>
+
+</head>
+<body ng-controller="firstController">
+	<div id="hello">
+
+		{{ "lower cap string" | uppercase }}     //结果：LOWER CAP STRING 
+
+		{{ "TANK is GOOD" | lowercase }}         //结果：tank is good 
+
+		{{ {foo: "bar", baz: 23} | json }}    //结果：{ "foo": "bar", "baz": 23 } 
+		{{ 1304375948024 | date }}                          //结果：May 3, 2011 
+		{{ 1304375948024 | date:"MM/dd/yyyy @ h:mma" }}     //结果：05/03/2011 @ 6:39AM 
+		{{ 1304375948024 | date:"yyyy-MM-dd hh:mm:ss" }}    //结果：2011-05-03 06:39:08  
+		{{ 1.234567 | number:1 }}    //结果：1.2 
+		{{ 1234567 | number }}       //结果：1,234,567 
+
+		{{ [{"age": 20,"id": 10,"name": "iphone"}, {"age": 12,"id": 11,"name": "sunm xing"}, {"age": 44,"id": 12,"name": "test abc"} ] | filter:'s'}}    //查找含有有 s 的行 
+	
+	<input type="text"	ng-model="name"/>
+	{{ [{"age": 20,"id": 10,"name": "iphone"}, {"age": 12,"id": 11,"name": "sunm xing"}, {"age": 44,"id": 12,"name": "test abc"} ] | filter:{'name':name} }}   //查找 name 为 iphone 的行 
+	
+	{{ "i love tank" | limitTo:6 }}           //结果：i love 
+
+	{{ "i love tank" | limitTo:-4 }}          //结果：tank
+
+	{{ [{"age": 20,"id": 10,"name": "iphone"}, {"age": 12,"id": 11,"name": "sunm xing"}, {"age": 44,"id": 12,"name": "test abc"} ] | limitTo:1 }}
+
+	{{ [{"age": 20,"id": 10,"name": "iphone"}, {"age": 12,"id": 11,"name": "sunm xing"}, {"age": 44,"id": 12,"name": "test abc"} ] | orderBy:'id':true }}        //根 id 降序排  
+{{ [{"age": 20,"id": 10,"name": "iphone"}, {"age": 12,"id": 11,"name": "sunm xing"}, {"age": 44,"id": 12,"name": "test abc"} ] | orderBy:'id' }}           //根据 id 升序排 
+	<br/>
+	<br/>
+
+{{name| rHello}}
+{{name| rJs}}
+	</div>
+
+</body>
+	<script type="text/javascript">
+		var module = angular.module("myapp",['myapp.filter']);
+		module.controller('firstController',['$scope','$filter',function($scope,$filter){
+			$scope.name="ffff";
+			
+			$scope.uname =$filter('uppercase')($scope.name);
+			console.log($scope.uname);
+			
+		}]);
+		
+		module.filter('rHello',function(){
+			return function(input,n1,n2){
+				console.log(input);
+				//alert(123);
+				console.log(n1);
+				console.log(n2);
+				return input.replace(/f/,'hello');
+			}
+		});
+		angular.bootstrap(document,['myapp']);
+	</script>
+</html>
