@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html >
+<html ng-app="myapp">
 <head >
 	<meta http-equiv="Content-Type" content="text/html;charset=UTF-8">
 	<title>Document</title>
@@ -9,20 +9,22 @@
 </head>
 <body ng-controller="firstController">
 	<div id="hello">
-	{{name}}
+	
 	</div>
 
 </body>
 	<script type="text/javascript">
 		var module = angular.module("myapp",[]);
 		module.controller('firstController',['$scope',function($scope){
-			$scope.name="ffff";
+			//$scope.name="ffff";
 			
-			var dom = document.getElementById("hello");
-			var obj=angular.element(dom);
-			obj.html('<h1>hkkk</h1>');
+			// var dom = document.getElementById("hello");
+			// var obj=angular.element(dom);
+			// obj.html('<h1>hkkk</h1>');
+			$('#hello').html("jquery");
+			
 		}]);
-		angular.bootstrap(document,['myapp']);
+		//angular.bootstrap(document,['myapp']);
 		
 	</script>
 </html>
